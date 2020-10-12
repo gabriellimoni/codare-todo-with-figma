@@ -1,0 +1,11 @@
+.todo-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background: #7F72EA;
+    border-radius: 6px;
+}
+.todo-header > img {
+    width: 80%;
+}

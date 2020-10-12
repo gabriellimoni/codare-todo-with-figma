@@ -1,0 +1,29 @@
+.todo-input-section {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.todo-input-section > input {
+    width: 82%;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #7F72EA;
+    border-radius: 4px;
+}
+.todo-input-section > input:focus,
+.todo-input-section > button:focus {
+    outline: none;
+}
+.todo-input-section > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E17025;
+    border: 0;
+    border-radius: 4px;
+    padding: 10px 18px;
+    transition: 0.1s all;
+}
+.todo-input-section > button:active {
+    transform: scale(1.1);
+}

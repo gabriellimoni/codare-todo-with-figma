@@ -1,5 +1,7 @@
 html, body {
     margin: 0;
+    font-family: monospace;
+    color: #3D3B51;
 }
 
 body {
@@ -27,14 +29,14 @@ body {
     }
 }
 
-.todo-header {
+.todo-title {
+    font-size: 35px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.todo-body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
-    background: #7F72EA;
-    border-radius: 6px;
-}
-.todo-header > img {
-    width: 80%;
 }
