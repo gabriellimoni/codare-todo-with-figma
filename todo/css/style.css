@@ -3,7 +3,38 @@ html, body {
 }
 
 body {
-    background: linear-gradient(70.75deg, #FFFFFF 5.19%, rgba(255, 255, 255, 0) 66%), url('../assets/background.png');
+    background: url('../assets/background.png');
     background-color: #3D357D;
     background-size: cover;
+}
+
+.todo-section {    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.todo-container {
+    width: 500px;
+    height: 85vh;
+    background: #ffffff;
+    border-radius: 6px;
+}
+@media (max-width: 550px) {
+    .todo-container {
+        width: 90%;
+    }
+}
+
+.todo-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background: #7F72EA;
+    border-radius: 6px;
+}
+.todo-header > img {
+    width: 80%;
 }
