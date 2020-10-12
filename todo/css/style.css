@@ -1,3 +1,9 @@
 html, body {
     margin: 0;
 }
+
+body {
+    background: linear-gradient(70.75deg, #FFFFFF 5.19%, rgba(255, 255, 255, 0) 66%), url('../assets/background.png');
+    background-color: #3D357D;
+    background-size: cover;
+}
