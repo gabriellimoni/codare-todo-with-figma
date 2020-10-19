@@ -1,0 +1,11 @@
+html, body {
+    margin: 0;
+    font-family: monospace;
+    color: #3D3B51;
+}
+
+body {
+    background: url('../assets/background.png');
+    background-color: #3D357D;
+    background-size: cover;
+}
