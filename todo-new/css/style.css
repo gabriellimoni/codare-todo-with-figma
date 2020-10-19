@@ -8,4 +8,22 @@ body {
     background: url('../assets/background.png');
     background-color: #3D357D;
     background-size: cover;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#TodoApp {
+    width: 500px;
+    height: 85vh;
+    background: #ffffff;
+    border-radius: 6px;
+    box-shadow: -60px 60px 60px rgba(4, 3, 49, 0.27);
+}
+@media (max-width: 550px) {
+    #TodoApp {
+        width: 90%;
+    }
 }
