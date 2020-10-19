@@ -41,3 +41,9 @@ header {
     min-width: 200px;
     padding: 0 20px;
 }
+
+.todo-title {
+    font-size: 35px;
+    margin: 20px 0;
+    text-align: center;
+}
