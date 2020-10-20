@@ -18,6 +18,13 @@ function _removeTodo(listId, todoItemId) {
     _renderAllTodos(listId)
 }
 
+function _toggleTodoStatus(listId, todoItemId) {
+    const todoToToggle = todoItems.filter(todoItem => todoItem.id === todoItemId)[0]
+    if (!todoToToggle) return
+    todoToToggle.status = todoToToggle.status === 'pending' ? 'done' : 'pending'
+    _renderAllTodos(listId)
+}
+
 function _renderAllTodos(listId) {
     const listElement = document.getElementById(listId)
     listElement.innerHTML = ''
@@ -29,12 +36,17 @@ function _renderAllTodos(listId) {
 
         const newItemTemplate = `
             <div class="todo-list-item-content">
-                <input type="checkbox" class="todo-item-check">
+                <input 
+                  type="checkbox" 
+                  class="todo-item-check" 
+                  ${todoItem.status === 'done' ? 'checked' : ''}
+                  id="check_${todoItem.id}"
+                >
                 <span class="todo-item-text">${todoItem.name}</span>
             </div>
 
             <div class="todo-list-item-actions">
-                <button class="button purple-background white-text">
+                <button class="button purple-background white-text" id="toggle_${todoItem.id}">
                     <img src="assets/checkmark.svg">
                 </button>
                 <button class="button orange-background" id="delete_${todoItem.id}">
@@ -47,5 +59,10 @@ function _renderAllTodos(listId) {
 
         const removeButton = document.getElementById(`delete_${todoItem.id}`)
         removeButton.onclick = () => _removeTodo(listId, todoItem.id)
+        
+        const toggleButton = document.getElementById(`toggle_${todoItem.id}`)
+        toggleButton.onclick = () => _toggleTodoStatus(listId, todoItem.id)
+        const toggleCheckbox = document.getElementById(`check_${todoItem.id}`)
+        toggleCheckbox.onclick = () => _toggleTodoStatus(listId, todoItem.id)
     })
 }
