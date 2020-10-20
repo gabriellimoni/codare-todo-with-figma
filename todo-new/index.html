@@ -30,7 +30,7 @@
     </div>
 
     <script type="module">
-        import { addTodo } from './js/app.js'
+        import { initialize, addTodo } from './js/app.js'
         const todoListId = 'TodoList'
         const addTodoButton = document.getElementById('AddTodoButton')
         const todoInput = document.getElementById('TodoInput')
@@ -58,6 +58,8 @@
             if (event.key !== 'Enter') return
             handleAddTodo()
         }
+
+        initialize(todoListId)
     </script>
 </body>
 </html>

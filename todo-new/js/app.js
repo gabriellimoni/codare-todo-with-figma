@@ -7,6 +7,17 @@
  */
 let todoItems = []
 
+export function initialize(listId) {
+    try {
+        const stateStringData = localStorage.getItem('state')
+        const stateJsonData = JSON.parse(stateStringData)
+        todoItems = stateJsonData
+        _renderAllTodos(listId)
+    } catch (error) {
+        // Ignora erros provenientes de parsing
+    }
+}
+
 export function addTodo(listId, todoItem) {
     todoItems.push(todoItem)
     _renderAllTodos(listId)
@@ -65,4 +76,11 @@ function _renderAllTodos(listId) {
         const toggleCheckbox = document.getElementById(`check_${todoItem.id}`)
         toggleCheckbox.onclick = () => _toggleTodoStatus(listId, todoItem.id)
     })
+
+    _saveAllToLocalStorage()
+}
+
+function _saveAllToLocalStorage () {
+    const dataToSave = JSON.stringify(todoItems)
+    localStorage.setItem('state', dataToSave)
 }
