@@ -30,25 +30,23 @@
     </div>
 
     <script type="module">
-        import { initialize, addTodo } from './js/app.js'
-        const todoListId = 'TodoList'
+        import LocalStoragePersistency from './js/persistency/LocalStoragePersistency.js'
+        import TodoApp from './js/TodoApp.js'
+
+        const localStoragePersistencyService = new LocalStoragePersistency()
+        const app = new TodoApp('TodoList', localStoragePersistencyService)
+        app.initialize()
+
         const addTodoButton = document.getElementById('AddTodoButton')
         const todoInput = document.getElementById('TodoInput')
 
         function handleAddTodo () {
             const todoName = todoInput.value
-            const todoId = Date.now()
-            const todoStatus = 'pending'
-            
             if (todoName === '') return
             
-            const newTodo = {
-                id: todoId,
-                name: todoName,
-                status: todoStatus
-            }
-
-            addTodo(todoListId, newTodo)
+            const newTodo = app.createTodoByName(todoName)
+            app.addTodo(newTodo)
+            
             todoInput.value = ''
             todoInput.focus()
         }
@@ -58,8 +56,6 @@
             if (event.key !== 'Enter') return
             handleAddTodo()
         }
-
-        initialize(todoListId)
     </script>
 </body>
 </html>
