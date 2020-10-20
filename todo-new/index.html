@@ -17,30 +17,47 @@
 
         <section class="todo-input-section">
             <input type="text" id="TodoInput">
-            <button class="button orange-background">
+            <button class="button orange-background" id="AddTodoButton">
                 <img src="assets/plus.svg">
             </button>
         </section>
 
         <section class="todo-list-section">
             <ul id="TodoList">
-                <li class="todo-list-item">
-                    <div class="todo-list-item-content">
-                        <input type="checkbox" class="todo-item-check">
-                        <span class="todo-item-text">Meu todo item</span>
-                    </div>
-
-                    <div class="todo-list-item-actions">
-                        <button class="button purple-background white-text">
-                            <img src="assets/checkmark.svg">
-                        </button>
-                        <button class="button orange-background">
-                            <img src="assets/trash.svg">
-                        </button>
-                    </div>
-                </li>
+                
             </ul>
         </section>
     </div>
+
+    <script type="module">
+        import { addTodo } from './js/app.js'
+        const todoListId = 'TodoList'
+        const addTodoButton = document.getElementById('AddTodoButton')
+        const todoInput = document.getElementById('TodoInput')
+
+        function handleAddTodo () {
+            const todoName = todoInput.value
+            const todoId = Date.now()
+            const todoStatus = 'pending'
+            
+            if (todoName === '') return
+            
+            const newTodo = {
+                id: todoId,
+                name: todoName,
+                status: todoStatus
+            }
+
+            addTodo(todoListId, newTodo)
+            todoInput.value = ''
+            todoInput.focus()
+        }
+
+        addTodoButton.onclick = handleAddTodo
+        todoInput.onkeypress = function (event) {
+            if (event.key !== 'Enter') return
+            handleAddTodo()
+        }
+    </script>
 </body>
 </html>
