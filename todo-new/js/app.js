@@ -12,6 +12,12 @@ export function addTodo(listId, todoItem) {
     _renderAllTodos(listId)
 }
 
+function _removeTodo(listId, todoItemId) {
+    const todoIndex = todoItems.map(todoItem => todoItem.id).indexOf(todoItemId)
+    todoItems.splice(todoIndex, 1)
+    _renderAllTodos(listId)
+}
+
 function _renderAllTodos(listId) {
     const listElement = document.getElementById(listId)
     listElement.innerHTML = ''
@@ -31,12 +37,15 @@ function _renderAllTodos(listId) {
                 <button class="button purple-background white-text">
                     <img src="assets/checkmark.svg">
                 </button>
-                <button class="button orange-background">
+                <button class="button orange-background" id="delete_${todoItem.id}">
                     <img src="assets/trash.svg">
                 </button>
             </div>
         `
         listItemElement.innerHTML = newItemTemplate
         listElement.append(listItemElement)
+
+        const removeButton = document.getElementById(`delete_${todoItem.id}`)
+        removeButton.onclick = () => _removeTodo(listId, todoItem.id)
     })
 }
