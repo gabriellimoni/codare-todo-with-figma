@@ -31,7 +31,7 @@
     </div>
 
     <script>
-        const todosArray = []
+        let todosArray = []
         const listElement = document.getElementById('TodoList')
         const inputElement = document.getElementById('TodoInput')
         
@@ -74,6 +74,8 @@
                 // anexa <li> à lista <ul>
                 listElement.append(todoItemElement)
             })
+
+            saveStateIntoLocalStorage()
         }
 
         function createTodoItemElementByTodo (todoItem) {
@@ -168,6 +170,26 @@
 
             render()
         }
+
+        function saveStateIntoLocalStorage () {
+            // converte o objeto JSON para string
+            const stringStateData = JSON.stringify(todosArray)
+            // salva no local storage
+            localStorage.setItem('state', stringStateData)
+        }
+
+        function loadStateFromLocalStorage () {
+            // busca estado no local storage
+            const stringStateData = localStorage.getItem('state')
+            
+            // atribui ao array de itens
+            todosArray = JSON.parse(stringStateData)
+
+            // renderiza tudo
+            render()
+        }
+
+        window.onload = loadStateFromLocalStorage
     </script>
 </body>
 </html>
