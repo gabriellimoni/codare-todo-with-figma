@@ -69,6 +69,7 @@
     </div>
 
     <script>
+        const todosArray = []
         const inputElement = document.getElementById('TodoInput')
         
         // event listener
@@ -81,7 +82,25 @@
             const inputValue = inputElement.value
             if (inputValue.trim() === '') return // barra inputs vazios
 
-            alert(inputValue)
+            // monta objeto Todo
+            const newTodo = {
+                id: Date.now(),
+                name: inputValue,
+                status: 'pending'
+            }
+            
+            // adiciona objeto montado à lista geral
+            todosArray.push(newTodo)
+
+            // renderiza tudo
+            render()
+
+            // limpa input
+            inputElement.value = ''
+        }
+
+        function render () {
+            
         }
     </script>
 </body>
