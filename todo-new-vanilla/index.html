@@ -115,10 +115,13 @@
         }
 
         function createTodoItemElementByTodo (todoItem) {
+            // atribui a variável para facilitar
+            const todoItemId = todoItem.id
+
             // cria elemento <li> e atribui classe e ID
             const todoItemElement = document.createElement('li')
             todoItemElement.className = 'todo-list-item'
-            todoItemElement.id = todoItem.id
+            todoItemElement.id = todoItemId
 
             // template do item usando template string
             // e passando o ID dinamicamente
@@ -127,16 +130,16 @@
                     <input 
                         type="checkbox" 
                         class="todo-item-check" 
-                        id="check_${todoItem.id}"
+                        id="check_${todoItemId}"
                     >
                     <span class="todo-item-text">${todoItem.name}</span>
                 </div>
 
                 <div class="todo-list-item-actions">
-                    <button class="button purple-background white-text" id="toggle_${todoItem.id}">
+                    <button class="button purple-background white-text" id="toggle_${todoItemId}">
                         <img src="assets/checkmark.svg">
                     </button>
-                    <button class="button orange-background" id="delete_${todoItem.id}">
+                    <button class="button orange-background" id="delete_${todoItemId}">
                         <img src="assets/trash.svg">
                     </button>
                 </div>
@@ -145,7 +148,33 @@
             // atribui conteúdo HTML ao elemento da lista
             todoItemElement.innerHTML = todoItemTemplate
 
+            // busca elemento com o ID delete_todoItemId
+            // de dentro do todoItemElement
+            const deleteButton = todoItemElement.querySelector(`#delete_${todoItemId}`)
+            
+            // atribui uma função ao onclick desse elemento
+            // que chama a função de deletar passando o ID
+            deleteButton.onclick = function () {
+                handleDeleteTodoById(todoItemId) 
+            }
+
             return todoItemElement
+        }
+
+        function handleDeleteTodoById (todoId) {
+            // transforma os TodosItens buscando apenas o ID de cada um
+            const onlyIdsFromTodos = todosArray.map(function (todoItem) {
+                return todoItem.id
+            })
+
+            // busca o índice do ID que deseja-se excluir
+            const deleteIndexOf = onlyIdsFromTodos.indexOf(todoId)
+
+            // remove todo do array
+            todosArray.splice(deleteIndexOf, 1)
+
+            // renderiza
+            render()
         }
     </script>
 </body>
