@@ -30,6 +30,12 @@
         </section>
     </div>
 
+    <!-- 
+        Insere antes de tudo um arquivo que tem uma função 
+        que gera o template, passando o todoItem por parâmetro
+    -->
+    <script src="js/todoItemTemplate.js"></script>
+
     <script>
         let todosList = []
         const listElement = document.getElementById('TodoList')
@@ -89,26 +95,7 @@
 
             // template do item usando template string
             // e passando o ID dinamicamente
-            const todoItemTemplate = `
-                <div class="todo-list-item-content">
-                    <input 
-                        type="checkbox" 
-                        class="todo-item-check" 
-                        id="check_${todoItemId}"
-                        ${todoItem.status === 'finished' ? 'checked' : ''}
-                    >
-                    <span class="todo-item-text">${todoItem.name}</span>
-                </div>
-
-                <div class="todo-list-item-actions">
-                    <button class="button purple-background white-text" id="toggle_${todoItemId}">
-                        <img src="assets/checkmark.svg">
-                    </button>
-                    <button class="button orange-background" id="delete_${todoItemId}">
-                        <img src="assets/trash.svg">
-                    </button>
-                </div>
-            `
+            const todoItemTemplate = getTodoItemTemplateByTodo(todoItem)
 
             // atribui conteúdo HTML ao elemento da lista
             todoItemElement.innerHTML = todoItemTemplate
