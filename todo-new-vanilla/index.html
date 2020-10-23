@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Codare Todo List</title>
+</head>
+<body>
+    <div id="TodoApp">
+        <header>
+            <img class="header-img" src="assets/logo.svg">
+        </header>
+
+        <h1 class="todo-title">Todo App</h1>
+
+        <section class="todo-input-section">
+            <input type="text" id="TodoInput">
+            <button class="button orange-background" id="AddTodoButton">
+                <img src="assets/plus.svg">
+            </button>
+        </section>
+
+        <section class="todo-list-section">
+            <ul id="TodoList">
+                <li class="todo-list-item" id="1">
+                    <div class="todo-list-item-content">
+                        <input 
+                            type="checkbox" 
+                            class="todo-item-check" 
+                            id="check_1"
+                        >
+                        <span class="todo-item-text">Jogar futebol</span>
+                    </div>
+    
+                    <div class="todo-list-item-actions">
+                        <button class="button purple-background white-text" id="toggle_1">
+                            <img src="assets/checkmark.svg">
+                        </button>
+                        <button class="button orange-background" id="delete_1">
+                            <img src="assets/trash.svg">
+                        </button>
+                    </div>
+                </li>
+                <li class="todo-list-item" id="2">
+                    <div class="todo-list-item-content">
+                        <input 
+                            type="checkbox" 
+                            class="todo-item-check" 
+                            id="check_1"
+                            checked
+                        >
+                        <span class="todo-item-text">Jogar basquete</span>
+                    </div>
+    
+                    <div class="todo-list-item-actions">
+                        <button class="button purple-background white-text" id="toggle_1">
+                            <img src="assets/checkmark.svg">
+                        </button>
+                        <button class="button orange-background" id="delete_1">
+                            <img src="assets/trash.svg">
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        
+    </script>
+</body>
+</html>
