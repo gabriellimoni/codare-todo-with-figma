@@ -31,7 +31,7 @@
     </div>
 
     <script>
-        let todosArray = []
+        let todosList = []
         const listElement = document.getElementById('TodoList')
         const inputElement = document.getElementById('TodoInput')
         
@@ -53,7 +53,7 @@
             }
             
             // adiciona objeto montado à lista geral
-            todosArray.push(newTodo)
+            todosList.push(newTodo)
 
             // renderiza tudo
             render()
@@ -67,7 +67,7 @@
             listElement.innerHTML = ''
 
             // itera por todos os items
-            todosArray.forEach(function (todoItem) {
+            todosList.forEach(function (todoItem) {
                 // chama função para criar elemento <li>
                 const todoItemElement = createTodoItemElementByTodo(todoItem)
 
@@ -140,7 +140,7 @@
 
         function handleDeleteTodoById (todoId) {
             // transforma os TodosItens buscando apenas o ID de cada um
-            const onlyIdsFromTodos = todosArray.map(function (todoItem) {
+            const onlyIdsFromTodos = todosList.map(function (todoItem) {
                 return todoItem.id
             })
 
@@ -148,7 +148,7 @@
             const deleteIndexOf = onlyIdsFromTodos.indexOf(todoId)
 
             // remove todo do array
-            todosArray.splice(deleteIndexOf, 1)
+            todosList.splice(deleteIndexOf, 1)
 
             // renderiza
             render()
@@ -156,7 +156,7 @@
 
         function handleToggleTodoById (todoId) {
             // busca TodoItem referente ao ID passado
-            const todoItem = todosArray.find(function (todoItem) {
+            const todoItem = todosList.find(function (todoItem) {
                 return todoItem.id === todoId
             })
 
@@ -173,7 +173,7 @@
 
         function saveStateIntoLocalStorage () {
             // converte o objeto JSON para string
-            const stringStateData = JSON.stringify(todosArray)
+            const stringStateData = JSON.stringify(todosList)
             // salva no local storage
             localStorage.setItem('state', stringStateData)
         }
@@ -183,7 +183,7 @@
             const stringStateData = localStorage.getItem('state')
             
             // atribui ao array de itens
-            todosArray = JSON.parse(stringStateData)
+            todosList = JSON.parse(stringStateData)
 
             // renderiza tudo
             render()
