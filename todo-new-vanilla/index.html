@@ -30,11 +30,9 @@
         </section>
     </div>
 
-    <!-- 
-        Insere antes de tudo um arquivo que tem uma função 
-        que gera o template, passando o todoItem por parâmetro
-    -->
+    <!-- Insere antes de tudo arquivos que tem funçõesauxiliares -->
     <script src="js/todoItemTemplate.js"></script>
+    <script src="js/persistency.js"></script>
 
     <script>
         let todosList = []
@@ -81,7 +79,7 @@
                 listElement.append(todoItemElement)
             })
 
-            saveStateIntoLocalStorage()
+            persistState(todosList)
         }
 
         function createTodoItemElementByTodo (todoItem) {
@@ -158,25 +156,11 @@
             render()
         }
 
-        function saveStateIntoLocalStorage () {
-            // converte o objeto JSON para string
-            const stringStateData = JSON.stringify(todosList)
-            // salva no local storage
-            localStorage.setItem('state', stringStateData)
-        }
-
-        function loadStateFromLocalStorage () {
-            // busca estado no local storage
-            const stringStateData = localStorage.getItem('state')
-            
-            // atribui ao array de itens
-            todosList = JSON.parse(stringStateData)
-
-            // renderiza tudo
+        window.onload = () => {
+            const state = getState()
+            todosList = state
             render()
         }
-
-        window.onload = loadStateFromLocalStorage
     </script>
 </body>
 </html>
