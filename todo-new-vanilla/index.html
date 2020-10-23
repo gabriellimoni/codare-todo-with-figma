@@ -131,6 +131,7 @@
                         type="checkbox" 
                         class="todo-item-check" 
                         id="check_${todoItemId}"
+                        ${todoItem.status === 'finished' ? 'checked' : ''}
                     >
                     <span class="todo-item-text">${todoItem.name}</span>
                 </div>
@@ -158,6 +159,18 @@
                 handleDeleteTodoById(todoItemId) 
             }
 
+            // mesmas ações para o botão de toggle
+            const toggleButton = todoItemElement.querySelector(`#toggle_${todoItemId}`)
+            // arrow function
+            toggleButton.onclick = () => { 
+                handleToggleTodoById(todoItemId)
+            }
+
+            // mesmas ações para o checkbox
+            const checkboxInput = todoItemElement.querySelector(`#check_${todoItemId}`)
+            // inline arrow function
+            checkboxInput.onclick = () => handleToggleTodoById(todoItemId)
+
             return todoItemElement
         }
 
@@ -174,6 +187,23 @@
             todosArray.splice(deleteIndexOf, 1)
 
             // renderiza
+            render()
+        }
+
+        function handleToggleTodoById (todoId) {
+            // busca TodoItem referente ao ID passado
+            const todoItem = todosArray.find(function (todoItem) {
+                return todoItem.id === todoId
+            })
+
+            // verifica se o status está pendente
+            // e altera para finalizado e vice-versa
+            if (todoItem.status === 'pending') {
+                todoItem.status = 'finished'
+            } else {
+                todoItem.status = 'pending'
+            }
+
             render()
         }
     </script>
