@@ -17,7 +17,8 @@
 
         <section class="todo-input-section">
             <input type="text" id="TodoInput">
-            <button class="button orange-background" id="AddTodoButton" onclick="handleAddTodo()">
+            <!-- Inline onclick -->
+            <button class="button orange-background" id="AddTodoButton" onclick="handleAddTodo()"> 
                 <img src="assets/plus.svg">
             </button>
         </section>
@@ -68,9 +69,19 @@
     </div>
 
     <script>
+        const inputElement = document.getElementById('TodoInput')
+        
+        // event listener
+        inputElement.onkeypress = function (event) {
+            // Apenas quando apertado Enter
+            if (event.key === 'Enter') handleAddTodo() // reaproveita função
+        }
+        
         function handleAddTodo () {
-            const inputElement = document.getElementById('TodoInput')
-            alert(inputElement.value)
+            const inputValue = inputElement.value
+            if (inputValue.trim() === '') return // barra inputs vazios
+
+            alert(inputValue)
         }
     </script>
 </body>
