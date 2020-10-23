@@ -70,6 +70,7 @@
 
     <script>
         const todosArray = []
+        const listElement = document.getElementById('TodoList')
         const inputElement = document.getElementById('TodoInput')
         
         // event listener
@@ -100,7 +101,51 @@
         }
 
         function render () {
-            
+            // limpa lista
+            listElement.innerHTML = ''
+
+            // itera por todos os items
+            todosArray.forEach(function (todoItem) {
+                // chama função para criar elemento <li>
+                const todoItemElement = createTodoItemElementByTodo(todoItem)
+
+                // anexa <li> à lista <ul>
+                listElement.append(todoItemElement)
+            })
+        }
+
+        function createTodoItemElementByTodo (todoItem) {
+            // cria elemento <li> e atribui classe e ID
+            const todoItemElement = document.createElement('li')
+            todoItemElement.className = 'todo-list-item'
+            todoItemElement.id = todoItem.id
+
+            // template do item usando template string
+            // e passando o ID dinamicamente
+            const todoItemTemplate = `
+                <div class="todo-list-item-content">
+                    <input 
+                        type="checkbox" 
+                        class="todo-item-check" 
+                        id="check_${todoItem.id}"
+                    >
+                    <span class="todo-item-text">${todoItem.name}</span>
+                </div>
+
+                <div class="todo-list-item-actions">
+                    <button class="button purple-background white-text" id="toggle_${todoItem.id}">
+                        <img src="assets/checkmark.svg">
+                    </button>
+                    <button class="button orange-background" id="delete_${todoItem.id}">
+                        <img src="assets/trash.svg">
+                    </button>
+                </div>
+            `
+
+            // atribui conteúdo HTML ao elemento da lista
+            todoItemElement.innerHTML = todoItemTemplate
+
+            return todoItemElement
         }
     </script>
 </body>
