@@ -50,7 +50,7 @@ function render () {
         listElement.append(itemElement)
     })
 
-    saveStateIntoLocalStorage(todosList)
+    persistState(todosList)
 }
 
 function handleDeleteTodoById (todoId) {
@@ -79,19 +79,8 @@ function handleToggleTodoStatusById (todoId) {
     render()
 }
 
-function saveStateIntoLocalStorage (state) {
-    const stringState = JSON.stringify(state)
-    localStorage.setItem('state', stringState)
-}
-
-function getStateFromLocalStorage () {
-    const stringState = localStorage.getItem('state')
-    const jsonState = JSON.parse(stringState)
-    return jsonState
-}
-
 window.onload = function () {
-    const state = getStateFromLocalStorage()
+    const state = getState()
     todosList = state
     render()
 }
