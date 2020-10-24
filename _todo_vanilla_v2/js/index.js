@@ -49,6 +49,8 @@ function render () {
 
         listElement.append(itemElement)
     })
+
+    saveStateIntoLocalStorage(todosList)
 }
 
 function getTodoItemTemplateByTodo (todoItem) {
@@ -97,5 +99,22 @@ function handleToggleTodoStatusById (todoId) {
         todoToToggle.status = 'pending'
     }
 
+    render()
+}
+
+function saveStateIntoLocalStorage (state) {
+    const stringState = JSON.stringify(state)
+    localStorage.setItem('state', stringState)
+}
+
+function getStateFromLocalStorage () {
+    const stringState = localStorage.getItem('state')
+    const jsonState = JSON.parse(stringState)
+    return jsonState
+}
+
+window.onload = function () {
+    const state = getStateFromLocalStorage()
+    todosList = state
     render()
 }
