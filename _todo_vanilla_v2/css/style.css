@@ -25,3 +25,17 @@ body {
         width: 90%;
     }
 }
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background: #7F72EA;
+    border-radius: 6px;
+}
+.header-img {
+    max-width: 350px;
+    min-width: 200px;
+    padding: 0 20px;
+}
