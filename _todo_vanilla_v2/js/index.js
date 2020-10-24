@@ -33,6 +33,12 @@ function render () {
         itemElement.className = 'todo-list-item'
         itemElement.id = todoItem.id
         itemElement.innerHTML = getTodoItemTemplateByTodo(todoItem)
+        
+        const deleteTodoButtonElement = itemElement.querySelector(`#trash_${todoItem.id}`)
+        deleteTodoButtonElement.onclick = function () {
+            handleDeleteTodoById(todoItem.id)
+        }
+
         listElement.append(itemElement)
     })
 }
@@ -53,4 +59,16 @@ function getTodoItemTemplateByTodo (todoItem) {
             </button>
         </div>
     `
+}
+
+function handleDeleteTodoById (todoId) {
+    const todosListOnlyIds = todosList.map(function (todoItem) {
+        return todoItem.id
+    })
+
+    const indexToDelete = todosListOnlyIds.indexOf(todoId)
+
+    todosList.splice(indexToDelete, 1)
+
+    render()
 }
