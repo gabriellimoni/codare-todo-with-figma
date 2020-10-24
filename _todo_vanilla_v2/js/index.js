@@ -1,8 +1,12 @@
 // armazena todos os items para processamento
 let todosList = []
+const inputElement = document.getElementById('TodoInput')
+
+inputElement.onkeydown = function (event) {
+    if (event.key === 'Enter') handleAddTodo()
+}
 
 function handleAddTodo () {
-    const inputElement = document.getElementById('TodoInput')
     const inputValue = inputElement.value
 
     if (inputValue === '') return
