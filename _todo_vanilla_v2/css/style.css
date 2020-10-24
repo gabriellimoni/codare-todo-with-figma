@@ -45,3 +45,27 @@ header {
     margin: 20px 0;
     text-align: center;
 }
+
+.todo-input-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#TodoInput {
+    width: 75%;
+    padding: 6px;
+    font-size: 20px;
+}
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    width: 50px;
+    height: 40px;
+}
+
+.orange-background {
+    background: #E17025;
+}
