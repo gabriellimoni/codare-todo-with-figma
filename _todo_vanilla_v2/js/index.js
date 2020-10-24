@@ -44,6 +44,9 @@ function render () {
             handleToggleTodoStatusById(todoItem.id)
         }
 
+        const toggleTodoCheckElement = itemElement.querySelector(`#check_${todoItem.id}`)
+        toggleTodoCheckElement.onclick = () => handleToggleTodoStatusById(todoItem.id)
+
         listElement.append(itemElement)
     })
 }
