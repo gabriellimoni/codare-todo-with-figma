@@ -39,6 +39,11 @@ function render () {
             handleDeleteTodoById(todoItem.id)
         }
 
+        const toggleTodoButtonElement = itemElement.querySelector(`#toggle_${todoItem.id}`)
+        toggleTodoButtonElement.onclick = () => {
+            handleToggleTodoStatusById(todoItem.id)
+        }
+
         listElement.append(itemElement)
     })
 }
@@ -46,7 +51,12 @@ function render () {
 function getTodoItemTemplateByTodo (todoItem) {
     return `
         <div class="todo-list-item-content">
-            <input type="checkbox" class="todo-item-check" id="check_${todoItem.id}">
+            <input 
+                type="checkbox" 
+                class="todo-item-check" 
+                id="check_${todoItem.id}"
+                ${todoItem.status === 'finished' ? 'checked' : ''}
+            >
             <span class="todo-item-text">${todoItem.name}</span>
         </div>
 
@@ -69,6 +79,20 @@ function handleDeleteTodoById (todoId) {
     const indexToDelete = todosListOnlyIds.indexOf(todoId)
 
     todosList.splice(indexToDelete, 1)
+
+    render()
+}
+
+function handleToggleTodoStatusById (todoId) {
+    const todoToToggle = todosList.find(function (todoItem) {
+        return todoItem.id === todoId
+    })
+
+    if (todoToToggle.status === 'pending') {
+        todoToToggle.status = 'finished'
+    } else {
+        todoToToggle.status = 'pending'
+    }
 
     render()
 }
