@@ -92,6 +92,11 @@ function handleToggleTodoStatusById (todoId) {
     render()
 }
 
+function handleClearAll () {
+    todosList = []
+    render()
+}
+
 window.onload = function () {
     const state = getState()
     todosList = state

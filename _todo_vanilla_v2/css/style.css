@@ -107,3 +107,11 @@ header {
     font-size: 14px;
     color: #666666;
 }
+
+#TodoClearAllText {
+    cursor: pointer;
+    text-align: right;
+    margin-right: 15px;
+    font-size: 14px;
+    color: #666666;
+}
