@@ -64,6 +64,13 @@ function renderTodoListItems () {
 
         listElement.append(itemElement)
     })
+
+    if (todosList.length === 0) {
+        const emptyListItemElement = document.createElement('li')
+        emptyListItemElement.className = 'todo-list-empty-item'
+        emptyListItemElement.innerHTML = getEMptyTodoItemTemplate()
+        listElement.append(emptyListItemElement)
+    }
 }
 
 function handleDeleteTodoById (todoId) {

@@ -101,6 +101,15 @@ header {
     font-size: 14px;
     margin-left: 5px;
 }
+.todo-list-empty-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #7F72EA;
+    color: white;
+    margin: 0 20px;
+    border-radius: 5px;
+}
 
 #TodoCounterText {
     margin-left: 15px;

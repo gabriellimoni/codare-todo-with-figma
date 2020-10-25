@@ -20,3 +20,7 @@ function getTodoItemTemplateByTodo (todoItem) {
         </div>
     `
 }
+
+function getEMptyTodoItemTemplate () {
+    return `<p>Lista vazia :(</p>`
+}
