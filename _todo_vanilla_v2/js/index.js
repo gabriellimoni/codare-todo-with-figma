@@ -25,6 +25,7 @@ function handleAddTodo () {
 // Sempre que chamada, essa função renderiza
 // todos os objetos da lista "todosList"
 function render () {
+    // colocar renderização da lista em uma função
     const listElement = document.getElementById('TodoList')
     listElement.innerHTML = ''
 
@@ -49,6 +50,14 @@ function render () {
 
         listElement.append(itemElement)
     })
+
+    // colocar renderização do texto em outra função
+    const pendingTodos = todosList.filter(todoItem => todoItem.status == 'pending')
+    const counterTextElement = document.getElementById('TodoCounterText')
+    counterTextElement.innerHTML = 'Você tem '
+    counterTextElement.innerHTML += pendingTodos.length
+    counterTextElement.innerHTML += todosList.length === 1 ? ' tarefa ' : ' tarefas '
+    counterTextElement.innerHTML += todosList.length === 1 ? 'pendente' : 'pendentes'
 
     persistState(todosList)
 }
